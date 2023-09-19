@@ -1,0 +1,15 @@
+@use 'variables' as var;
+@use 'shared' as *;
+
+.logo {
+  > h1 {
+    display: block;
+    padding: 1rem;
+    background-color: var.$tiffany-blue;
+    border-radius: .5rem;
+    font-size: 2rem;
+    font-weight: bold;
+    color: var.$smoky-black;
+    text-transform: uppercase;
+  }
+}
