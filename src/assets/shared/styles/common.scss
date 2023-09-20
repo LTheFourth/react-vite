@@ -3,3 +3,23 @@
   -ms-user-select: none; /* IE 10 and IE 11 */
   user-select: none; /* Standard syntax */
 }
+
+.clickable {
+  cursor: pointer;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.alg-cen {
+  align-items: center;
+}
+
+.jtf-cen {
+  justify-content: center;
+}

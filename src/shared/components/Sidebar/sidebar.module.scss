@@ -1,15 +1,63 @@
 @use 'variables' as var;
 @use 'shared' as *;
 
-.logo {
-  > h1 {
-    display: block;
-    padding: 1rem;
-    background-color: var.$tiffany-blue;
-    border-radius: .5rem;
-    font-size: 2rem;
-    font-weight: bold;
-    color: var.$smoky-black;
-    text-transform: uppercase;
+.sidebarContainer {
+  padding: 2rem 0.5rem;
+}
+
+.sidebarHeader {
+  text-transform: uppercase;
+  font-weight: bold;
+  margin-bottom: 2rem;
+
+  .logo {
+    margin-right: rem(10px);
+    > h1 {
+      display: flex;
+      align-items: center;
+      text-align: center;
+      justify-content: center;
+      width: rem(64px);
+      height: rem(64px);
+      background-color: var.$clor-2;
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: var.$clor-3;
+      text-transform: uppercase;
+      border-radius: rem(5px);
+    }
   }
+
+  h2 {
+    line-height: 1rem;
+  }
+}
+
+
+
+.navLinks {
+  margin: 1rem 0;
+  width: 100%;
+}
+
+.linkItem {
+  display: block;
+  text-decoration: none;
+  border-radius: rem(6px);
+  padding: 0.5rem 0;
+  font-family: var.$font-2;
+  font-size: 1.25rem;
+  font-weight: 300;
+  text-transform: none;
+  color: var.$clor-3;
+  transition: all ease 0.1s;
+}
+
+.linkItem:hover {
+  color: var.$clor-5;
+}
+
+.isActiveLink {
+  position: relative;
+  color: var.$clor-5;
 }

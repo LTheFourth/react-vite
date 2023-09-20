@@ -10,9 +10,10 @@
   }
 
   .sidebar {
-    width: 12rem;
-    padding: rem(32);
-    background-color: var.$lion;
+    width: 15rem;
+    padding-left: 1rem;
+    background-color: var.$clor-1;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
   }
   .content {
     width: 80%;
