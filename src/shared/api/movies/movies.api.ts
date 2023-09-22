@@ -33,4 +33,8 @@ export class MoviesAPI extends APIBase {
   static async getAll() {
     return await this.request(this.url, HTTPMethod.GET);
   }
+
+  static async get(id: string) {
+    return await this.request(`${this.url}/${id}`, HTTPMethod.GET);
+  }
 }

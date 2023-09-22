@@ -16,6 +16,10 @@ export const router = createBrowserRouter([
         path: 'create',
         element: <DetailPageComponent />,
       },
+      {
+        path: 'detail/:id',
+        element: <DetailPageComponent isDetail={true} />,
+      },
     ],
     errorElement: <div>HEHE, 404</div>,
   },

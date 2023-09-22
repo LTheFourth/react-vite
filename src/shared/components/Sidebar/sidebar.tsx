@@ -4,7 +4,6 @@ import { NavLink } from 'react-router-dom';
 export default function SidebarComponent() {
   const links: { name: string; path: string }[] = [
     { name: 'Movies', path: 'home' },
-    { name: 'Creation', path: 'create' },
   ];
 
   return (

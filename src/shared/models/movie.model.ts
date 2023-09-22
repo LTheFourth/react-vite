@@ -1,5 +1,5 @@
 export interface Movie {
-  id? : unknown;
+  id? : string;
   name: string;
   thumbnail: string;
   director: string;
