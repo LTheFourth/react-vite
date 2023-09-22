@@ -1,6 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { Layout } from '@shared/components/Layout';
-import { HomePage } from 'src/pages/Home';
+import { HomePageComponent } from 'src/pages/Home';
+import { DetailPageComponent } from './pages/Detail';
 
 export const router = createBrowserRouter([
   {
@@ -9,7 +10,11 @@ export const router = createBrowserRouter([
     children: [
       {
         path: 'home',
-        element: <HomePage />,
+        element: <HomePageComponent />,
+      },
+      {
+        path: 'create',
+        element: <DetailPageComponent />,
       },
     ],
     errorElement: <div>HEHE, 404</div>,

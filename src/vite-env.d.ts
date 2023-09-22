@@ -2,6 +2,7 @@
 
 interface ImportMetaEnv {
   readonly VITE_TEST: string;
+  readonly VITE_HOST: string;
   // more env variables...
 }
 

@@ -1,1 +1,1 @@
-export {default as HomePage} from './home.tsx'
+export {default as HomePageComponent} from './home.tsx'

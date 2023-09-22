@@ -1,0 +1,1 @@
+export {default as DetailPageComponent} from './detail.tsx'
