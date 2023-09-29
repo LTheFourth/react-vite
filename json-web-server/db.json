@@ -1,16 +1,22 @@
 {
   "movies": [
     {
-      "id" : 1,
-      "name": "Inception",
+      "name": "Inception (HEHE) 1",
+      "thumbnail": "https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_.jpg",
+      "director": "Christopher Nolan",
+      "id": 1
+    },
+    {
+      "id": 2,
+      "name": "Inception 2",
       "thumbnail": "https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_.jpg",
       "director": "Christopher Nolan"
     },
     {
-      "id" : 2,
-      "name": "Inception 2",
+      "name": "Inception",
       "thumbnail": "https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_.jpg",
-      "director": "Christopher Nolan"
+      "director": "Christopher Nolan",
+      "id": 3
     }
   ]
 }

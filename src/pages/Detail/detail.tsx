@@ -1,6 +1,5 @@
 import useDetailPageLogic from './detail.logic';
 import './detail.component.scss';
-import { useNavigate } from 'react-router-dom';
 
 export default function DetailPageComponent({
   isDetail = false,
@@ -8,42 +7,59 @@ export default function DetailPageComponent({
   isDetail?: boolean;
 }) {
   const logic = useDetailPageLogic(isDetail);
-  const navigate = useNavigate();
-
-
   return (
-    <div className='detail-page flex' key={logic.state.formValueKey}>
+    <div className='detail-page flex'>
       <div className='form'>
         <div className='form-control'>
           <label htmlFor=''>Name</label>
           <input
             type='text'
-            value={logic.prop.form.get('name')?.value}
-            onChange={() => {}}
+            value={logic.form['name'].value}
+            onChange={(event) => {
+              logic.form['name'].setValue(event.target.value);
+            }}
           />
         </div>
         <div className='form-control'>
           <label htmlFor=''>Thumbnail</label>
           <input
             type='text'
-            value={logic.prop.form.get('thumbnail')?.value}
-            onChange={() => {}}
+            value={logic.form['thumbnail'].value}
+            onChange={(event) => {
+              logic.form['thumbnail'].setValue(event.target.value);
+            }}
           />
         </div>
         <div className='form-control'>
           <label htmlFor=''>Director</label>
           <input
             type='text'
-            value={logic.prop.form.get('director')?.value}
-            onChange={() => {}}
+            value={logic.form['director'].value}
+            onChange={(event) => {
+              logic.form['director'].setValue(event.target.value);
+            }}
           />
         </div>
 
         <div className='action flex'>
-          <button className='btn'>Save</button>
-          <button className='btn' onClick={() => {
-            navigate('/home')
-          }}>Back To Movies</button>
+          <button className='btn' onClick={logic.saveMovie}>
+            Save
+          </button>
+          {isDetail ? (
+            <button className='btn' onClick={() => {
+              logic.deleteMovie()
+            }}>
+              Delete
+            </button>
+          ) : null}
+          <button
+            className='btn'
+            onClick={() => {
+              logic.navigate('/home');
+            }}
+          >
+            Back To Movies
+          </button>
         </div>
       </div>
     </div>

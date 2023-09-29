@@ -11,7 +11,7 @@ export enum HTTPMethod {
 }
 
 export default abstract class APIBase {
-  static api = apiConfig
+  private static api = apiConfig;
 
   static async request(
     url: string,

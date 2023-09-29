@@ -18,7 +18,6 @@ const errorHandler = (error: any) => {
 };
 
 apiConfig.interceptors.response.use((config )=> {
-  console.info('hehe')
   return config;
 }, (error) => {
   return errorHandler(error);
