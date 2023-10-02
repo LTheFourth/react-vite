@@ -14,9 +14,14 @@ export default function DetailPageComponent({
           <label htmlFor=''>Name</label>
           <input
             type='text'
-            value={logic.form['name'].value}
+            value={logic.form.controls['name'].value}
+            className={
+              logic.form.controls['name'].error() && logic.submitted
+                ? 'error'
+                : ''
+            }
             onChange={(event) => {
-              logic.form['name'].setValue(event.target.value);
+              logic.form.controls['name'].setValue(event.target.value);
             }}
           />
         </div>
@@ -24,9 +29,14 @@ export default function DetailPageComponent({
           <label htmlFor=''>Thumbnail</label>
           <input
             type='text'
-            value={logic.form['thumbnail'].value}
+            value={logic.form.controls['thumbnail'].value}
+            className={
+              logic.form.controls['thumbnail'].error() && logic.submitted
+                ? 'error'
+                : ''
+            }
             onChange={(event) => {
-              logic.form['thumbnail'].setValue(event.target.value);
+              logic.form.controls['thumbnail'].setValue(event.target.value);
             }}
           />
         </div>
@@ -34,9 +44,14 @@ export default function DetailPageComponent({
           <label htmlFor=''>Director</label>
           <input
             type='text'
-            value={logic.form['director'].value}
+            value={logic.form.controls['director'].value}
+            className={
+              logic.form.controls['director'].error() && logic.submitted
+                ? 'error'
+                : ''
+            }
             onChange={(event) => {
-              logic.form['director'].setValue(event.target.value);
+              logic.form.controls['director'].setValue(event.target.value);
             }}
           />
         </div>
@@ -46,9 +61,10 @@ export default function DetailPageComponent({
             Save
           </button>
           {isDetail ? (
-            <button className='btn' onClick={() => {
-              logic.deleteMovie()
-            }}>
+            <button
+              className='btn'
+              onClick={logic.deleteMovie}
+            >
               Delete
             </button>
           ) : null}
@@ -60,6 +76,7 @@ export default function DetailPageComponent({
           >
             Back To Movies
           </button>
+
         </div>
       </div>
     </div>

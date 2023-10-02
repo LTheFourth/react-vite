@@ -1,38 +1,28 @@
+import { useState } from 'react';
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect } from 'react';
 import { MoviesAPI } from 'src/shared/api/movies/movies.api';
 import { useNavigate, useParams } from 'react-router-dom';
-import { IForm } from 'src/shared/utils/interface/Iform';
-import { useFormControl, useFormUpdater } from 'src/shared/utils/util';
+import { Validator } from 'src/shared/utils/validators/validator';
+import { useFormControl } from 'src/shared/utils/hooks/hooks';
+import { Form } from 'src/shared/utils/model/form';
 
 export default function useDetailPageLogic(isDetail: boolean) {
-  const form: IForm = {
-    name: useFormControl(''),
-    thumbnail: useFormControl(''),
-    director: useFormControl(''),
-
-    getFormValue: () => {
-      const value: any = {};
-      Object.keys(form).every((key) => {
-        if (typeof form[key] === 'function') {
-          return false;
-        }
-        value[key] = form[key].value;
-        return true;
-      });
-      return value;
-    },
-  };
+  const form: Form = new Form({
+    name: useFormControl('', [Validator.Required]),
+    thumbnail: useFormControl('', [Validator.Required]),
+    director: useFormControl('', [Validator.Required]),
+  });
   const navigate = useNavigate();
-  const formUpdater = useFormUpdater(form);
   const { id } = useParams();
+  const [submitted, setSubmitted] = useState(false);
 
   useEffect(() => {
     if (isDetail && id) {
       MoviesAPI.get(id).then((response) => {
         if (response.data) {
-          formUpdater.setValue({
+          form.setValue({
             name: response.data.name,
             thumbnail: response.data.thumbnail,
             director: response.data.director,
@@ -43,9 +33,14 @@ export default function useDetailPageLogic(isDetail: boolean) {
   }, []);
 
   const saveMovie = () => {
+    setSubmitted(true);
+    if(form.errors){
+      console.log(form.errors)
+      return;
+    }
     isDetail && id
-      ? MoviesAPI.update(id, form.getFormValue())
-      : MoviesAPI.save(form.getFormValue());
+      ? MoviesAPI.update(id, form.value)
+      : MoviesAPI.save(form.value);
     navigate('/home');
   };
 
@@ -60,5 +55,6 @@ export default function useDetailPageLogic(isDetail: boolean) {
     navigate,
     saveMovie,
     deleteMovie,
+    submitted,
   };
 }
