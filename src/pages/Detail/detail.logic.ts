@@ -35,7 +35,6 @@ export default function useDetailPageLogic(isDetail: boolean) {
   const saveMovie = () => {
     setSubmitted(true);
     if(form.errors){
-      console.log(form.errors)
       return;
     }
     isDetail && id

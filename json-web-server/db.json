@@ -13,10 +13,24 @@
       "director": "Christopher Nolan"
     },
     {
-      "name": "Inception",
+      "name": "Inception 123",
       "thumbnail": "https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_.jpg",
       "director": "Christopher Nolan",
       "id": 3
+    }
+  ],
+  "users": [
+    {
+      "name": "longpkd",
+      "email": "admin@gmail.com",
+      "password": "hehe123!",
+      "role": "admin"
+    },
+    {
+      "name": "longpkd_user",
+      "email": "user@gmail.com",
+      "password": "hehe123!",
+      "role": "user"
     }
   ]
 }
