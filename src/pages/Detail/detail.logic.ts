@@ -2,11 +2,11 @@ import { useState } from 'react';
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect } from 'react';
-import { MoviesAPI } from 'src/shared/api/movies/movies.api';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Validator } from 'src/shared/utils/validators/validator';
 import { useFormControl } from 'src/shared/utils/hooks/hooks';
 import { Form } from 'src/shared/utils/model/form';
+import MovieService from 'src/shared/api/movies/movies.api';
 
 export default function useDetailPageLogic(isDetail: boolean) {
   const form: Form = new Form({
@@ -20,7 +20,7 @@ export default function useDetailPageLogic(isDetail: boolean) {
 
   useEffect(() => {
     if (isDetail && id) {
-      MoviesAPI.get(id).then((response) => {
+      MovieService.get(id).then((response) => {
         if (response.data) {
           form.setValue({
             name: response.data.name,
@@ -38,13 +38,13 @@ export default function useDetailPageLogic(isDetail: boolean) {
       return;
     }
     isDetail && id
-      ? MoviesAPI.update(id, form.value)
-      : MoviesAPI.save(form.value);
+      ? MovieService.update(id, form.value)
+      : MovieService.save(form.value);
     navigate('/home');
   };
 
   const deleteMovie = () => {
-    MoviesAPI.delete(id!);
+    MovieService.delete(id!);
     navigate('/home');
   };
 

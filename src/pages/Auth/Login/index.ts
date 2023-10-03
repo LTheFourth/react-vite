@@ -1,0 +1,1 @@
+export {default as LoginPageComponent} from './login.tsx'

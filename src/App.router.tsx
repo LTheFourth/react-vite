@@ -1,9 +1,10 @@
-import { Navigate, createBrowserRouter } from 'react-router-dom';
+import { Navigate, Outlet, createBrowserRouter } from 'react-router-dom';
 import { Layout } from '@shared/components/Layout';
 import { HomePageComponent } from 'src/pages/Home';
 import { DetailPageComponent } from './pages/Detail';
 import { UserPageComponent } from './pages/User';
 import useAuth from './core/auth/auth.hook';
+import { LoginPageComponent } from './pages/Auth/Login';
 
 export default function useRouting() {
   const auth = useAuth();
@@ -36,8 +37,22 @@ export default function useRouting() {
       errorElement: <Navigate to='/' />,
     },
     {
-      path: 'login',
-      element: <>Login page Here</>,
+      path: '/auth',
+      element: auth.isLogedIn ? <Navigate to='/' /> : <Outlet />,
+      children: [
+        {
+          index: true,
+          element: <Navigate to='/auth/login' />,
+        },
+        {
+          path: 'login',
+          element: <LoginPageComponent />,
+        },
+        {
+          path: 'register',
+          element: <>register page Here</>,
+        },
+      ],
     },
   ]);
 
