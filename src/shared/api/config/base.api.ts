@@ -10,15 +10,15 @@ export enum HTTPMethod {
   DELETE = 'DELETE',
 }
 
-export default abstract class APIBaseSingleton {
+export default abstract class BaseAPI {
   protected http = apiConfig;
 
-  async request(
+  async request<T>(
     url: string,
     method: HTTPMethod,
     data?: any,
     headers?: any
   ) {
-    return await this.http.request({ url, method, headers, data });
+    return await this.http.request<T|any>({ url, method, headers, data });
   }
 }

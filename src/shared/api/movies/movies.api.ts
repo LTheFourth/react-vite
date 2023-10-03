@@ -1,7 +1,7 @@
 import { Movie } from 'src/shared/models/movie.model';
-import APIBase, { HTTPMethod } from '../config/base.api';
+import BaseAPI, { HTTPMethod } from '../config/base.api';
 
-class MoviesAPI extends APIBase {
+class MoviesAPI extends BaseAPI {
   private url = 'movies';
 
   async getAll() {
@@ -23,7 +23,9 @@ class MoviesAPI extends APIBase {
   async delete(id: string) {
     return await this.request(`${this.url}/${id}`, HTTPMethod.DELETE);
   }
+
+
 }
 
-const MovieService = new MoviesAPI();
-export default MovieService;
+const movieSerive = new MoviesAPI();
+export default movieSerive

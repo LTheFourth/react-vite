@@ -23,6 +23,10 @@ export class Form {
     });
   }
 
+  getValue(control: string) {
+    return this.controls[control]?.value;
+  }
+
   get errors() {
     const errs: any = Object.keys(this.controls).reduce((value: any, key) => {
       const error = this.controls[key].error();

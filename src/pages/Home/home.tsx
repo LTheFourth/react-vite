@@ -16,7 +16,7 @@ function HomePageComponent() {
         </div>
 
         <div className='cards flex'>
-          {logic.state.movies.map((movie, index) => (
+          {logic.movies.map((movie, index) => (
             <div
               className='movie-card clickable flex flex-col alg-cen'
               onClick={() => {

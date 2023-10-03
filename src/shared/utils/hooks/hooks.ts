@@ -39,3 +39,8 @@ export function useDebounce(value: string, delay: number = 300) {
 
   return debouncedValue;
 }
+
+export function useGlobalState<T>(initialValue?: any) {
+  const [value, setValue] = useState<T>(initialValue);
+  return { value, setValue };
+}

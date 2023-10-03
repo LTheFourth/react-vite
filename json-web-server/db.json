@@ -21,15 +21,17 @@
   ],
   "users": [
     {
+      "id": 1,
       "name": "longpkd",
-      "email": "admin@gmail.com",
-      "password": "hehe123!",
+      "email": "admin@mail.com",
+      "password": "$2a$10$rs34vGRID71gjuL8vmmZSODn4I3sJ/i58KqbbeFsAUmdt4oehzGg.",
       "role": "admin"
     },
     {
+      "id": 2,
       "name": "longpkd_user",
-      "email": "user@gmail.com",
-      "password": "hehe123!",
+      "email": "user@mail.com",
+      "password": "$2a$10$rs34vGRID71gjuL8vmmZSODn4I3sJ/i58KqbbeFsAUmdt4oehzGg.",
       "role": "user"
     }
   ]

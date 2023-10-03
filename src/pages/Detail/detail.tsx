@@ -14,7 +14,7 @@ export default function DetailPageComponent({
           <label htmlFor=''>Name</label>
           <input
             type='text'
-            value={logic.form.controls['name'].value}
+            value={logic.form.getValue('name')}
             className={
               logic.form.controls['name'].error() && logic.submitted
                 ? 'error'
@@ -29,7 +29,7 @@ export default function DetailPageComponent({
           <label htmlFor=''>Thumbnail</label>
           <input
             type='text'
-            value={logic.form.controls['thumbnail'].value}
+            value={logic.form.getValue('thumbnail')}
             className={
               logic.form.controls['thumbnail'].error() && logic.submitted
                 ? 'error'
@@ -44,7 +44,7 @@ export default function DetailPageComponent({
           <label htmlFor=''>Director</label>
           <input
             type='text'
-            value={logic.form.controls['director'].value}
+            value={logic.form.getValue('director')}
             className={
               logic.form.controls['director'].error() && logic.submitted
                 ? 'error'
@@ -61,10 +61,7 @@ export default function DetailPageComponent({
             Save
           </button>
           {isDetail ? (
-            <button
-              className='btn'
-              onClick={logic.deleteMovie}
-            >
+            <button className='btn' onClick={logic.deleteMovie}>
               Delete
             </button>
           ) : null}
@@ -76,7 +73,6 @@ export default function DetailPageComponent({
           >
             Back To Movies
           </button>
-
         </div>
       </div>
     </div>

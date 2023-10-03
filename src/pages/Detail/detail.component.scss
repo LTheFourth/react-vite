@@ -10,23 +10,4 @@
   .preview {
     margin-left: 4rem;
   }
-  .form-control {
-    margin-bottom: 1rem;
-    label {
-      display: block;
-      margin-left: 1rem;
-      font-size: 0.75rem;
-    }
-    input {
-      width: 20rem;
-      border: 1px solid var.$clor-1;
-      border-radius: 0.5rem;
-      padding: 0.5rem 1rem;
-      margin: 0.5rem 0;
-    }
-
-    input.error {
-      border-color: red;
-    }
-  }
 }

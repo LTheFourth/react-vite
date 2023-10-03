@@ -3,15 +3,16 @@ import { Layout } from '@shared/components/Layout';
 import { HomePageComponent } from 'src/pages/Home';
 import { DetailPageComponent } from './pages/Detail';
 import { UserPageComponent } from './pages/User';
-import useAuth from './core/auth/auth.hook';
 import { LoginPageComponent } from './pages/Auth/Login';
+import { useContext, useEffect } from 'react';
 
 export default function useRouting() {
-  const auth = useAuth();
   const router = createBrowserRouter([
     {
       path: '/',
-      element: auth.isLogedIn ? <Layout /> : <Navigate to='/auth' />,
+      element: <Navigate to='/auth' />,
+      // element: <Layout />,
+      // element: false ? <Layout /> : <Navigate to='/auth' />,
       children: [
         {
           index: true,
@@ -38,7 +39,8 @@ export default function useRouting() {
     },
     {
       path: '/auth',
-      element: auth.isLogedIn ? <Navigate to='/' /> : <Outlet />,
+      element: <Outlet />,
+      // element: isLoggedIn ? <Navigate to='/' /> : <Outlet />,
       children: [
         {
           index: true,
