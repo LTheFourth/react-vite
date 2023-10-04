@@ -4,7 +4,7 @@ import cookieService from 'src/shared/service/cookies.service';
 export class AuthSession {
   isLoggedIn: boolean = false;
   protected token?: string | null;
-  protected userRole?: string;
+  protected userRole?: string | null;
 
   constructor() {
     this.getSessionToken();
@@ -14,7 +14,7 @@ export class AuthSession {
     return this.userRole;
   }
 
-  logout(){
+  logout() {
     cookieService.delete('token');
     cookieService.delete('user_role');
     this.isLoggedIn = false;
@@ -22,18 +22,19 @@ export class AuthSession {
 
   setCurrentUser(userInfo: { accessToken: string; user: UserModel }) {
     this.isLoggedIn = true;
-    this.setToken(userInfo.accessToken);
+    this.token = userInfo.accessToken;
     this.userRole = userInfo.user.role;
+    this.setSession();
   }
 
-  private setToken(token: string) {
-    this.token = token;
-    cookieService.set('token', this.token, 60);
-    cookieService.set('user_role', this.token, 60);
+  private setSession() {
+    cookieService.set('token', this.token!, 60);
+    cookieService.set('user_role', this.userRole!, 60);
   }
 
   private getSessionToken() {
     this.token = cookieService.get('token') || null;
+    this.userRole = cookieService.get('user_role');
     if (this.token) {
       this.isLoggedIn = true;
     }
