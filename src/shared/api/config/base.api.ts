@@ -20,6 +20,6 @@ export default abstract class BaseAPI {
     data?: any,
     headers?: any
   ) {
-    return await this.http.request<T|any>({ url, method, headers, data });
+    return await this.http?.request<T|any>({ url, method, headers, data });
   }
 }

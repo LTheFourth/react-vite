@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import axios from 'axios';
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { GlobalContext } from 'src/App';
 import authSession from 'src/core/auth/auth-session.service';
 
@@ -10,10 +10,11 @@ const apiConfig = axios.create({
 });
 
 function AxiosInterceptor({ children }: any) {
-  const {isAuth} = useContext(GlobalContext);
+  const [axiosReady, setAxiosReady] = useState(false);
+  const { isAuth } = useContext(GlobalContext);
 
   useEffect(() => {
-    const reqInterceptor = (request: any) => {
+    const reqHandler = (request: any) => {
       const token = authSession.token;
       if (token) {
         request.headers.Authorization = `Bearer ${token}`;
@@ -21,13 +22,8 @@ function AxiosInterceptor({ children }: any) {
       return request;
     };
 
-    const resInterceptor = (response: any) => {
+    const resHandler = (response: any) => {
       return response;
-    };
-
-    const errInterceptor = (error: any) => {
-      errorHandler(error);
-      return Promise.reject(error);
     };
 
     const errorHandler = (error: any) => {
@@ -35,26 +31,27 @@ function AxiosInterceptor({ children }: any) {
       // logging only errors that are not 401
       if (statusCode && statusCode !== 401) {
         console.error(error);
-      }else{
+      } else {
         isAuth.setValue(false);
       }
 
       return Promise.reject(error);
     };
 
-    const requestInterceptor =
-      apiConfig.interceptors.request.use(reqInterceptor);
-    const responseInterceptor = apiConfig.interceptors.response.use(
-      resInterceptor,
-      errInterceptor
+    const reqInterceptor = apiConfig.interceptors.request.use(reqHandler);
+
+    const resInterceptor = apiConfig.interceptors.response.use(
+      resHandler,
+      errorHandler
     );
 
+    setAxiosReady(true);
     return () => {
-      apiConfig.interceptors.request.eject(requestInterceptor);
-      apiConfig.interceptors.response.eject(responseInterceptor);
+      apiConfig.interceptors.request.eject(reqInterceptor);
+      apiConfig.interceptors.response.eject(resInterceptor);
     };
   }, []);
-  return children;
+  return axiosReady ? children : '';
 }
 
 export default apiConfig;
