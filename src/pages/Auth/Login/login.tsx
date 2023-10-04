@@ -1,5 +1,6 @@
 import './login.component.scss';
 import useLoginLogic from './login.logic';
+import { FormInput } from 'src/shared/components/FormControlInput';
 
 export default function LoginPage() {
   const logic = useLoginLogic();
@@ -11,26 +12,18 @@ export default function LoginPage() {
           <h1>Login</h1>
         </div>
         <div className='body flex flex-col'>
-          <div className='form-control'>
-            <input
-              type='email'
-              placeholder='Email'
-              value={logic.loginForm.getValue('email')}
-              onChange={({ target }) => {
-                logic.loginForm.controls['email']?.setValue(target.value);
-              }}
-            />
-          </div>
-          <div className='form-control'>
-            <input
-              type='password'
-              placeholder='Password'
-              value={logic.loginForm.getValue('password')}
-              onChange={({ target }) => {
-                logic.loginForm.controls['password']?.setValue(target.value);
-              }}
-            />
-          </div>
+          <FormInput
+            label='Email'
+            type='email'
+            displayError={logic.submitted}
+            control={logic.loginForm.control('email')}
+          />
+          <FormInput
+            label='Password'
+            type='password'
+            displayError={logic.submitted}
+            control={logic.loginForm.control('password')}
+          />
         </div>
         <div className='action'>
           <button

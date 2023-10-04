@@ -15,6 +15,7 @@ export default function useDetailPageLogic(isDetail: boolean) {
     director: useFormControl('', [Validator.Required]),
   });
   const navigate = useNavigate();
+
   const { id } = useParams();
   const [submitted, setSubmitted] = useState(false);
 
@@ -31,6 +32,10 @@ export default function useDetailPageLogic(isDetail: boolean) {
       });
     }
   }, []);
+
+  const isFieldError = (control : string) => {
+    return !!(form.controlError(control) && submitted);
+  }
 
   const saveMovie = () => {
     setSubmitted(true);
@@ -55,5 +60,6 @@ export default function useDetailPageLogic(isDetail: boolean) {
     saveMovie,
     deleteMovie,
     submitted,
+    isFieldError
   };
 }

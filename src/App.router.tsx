@@ -8,8 +8,8 @@ import { useContext } from 'react';
 import { GlobalContext } from './App';
 
 export default function useRouting() {
-  const globalState = useContext(GlobalContext);
-  const isAuth = globalState.isAuth
+  const {isAuth} = useContext(GlobalContext);
+
   const router = createBrowserRouter([
     {
       path: '/',

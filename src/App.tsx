@@ -4,6 +4,7 @@ import './App.scss';
 import authSession from './core/auth/auth-session.service';
 import BrowserRouter from './Browser';
 import { useGlobalState } from './shared/utils/hooks/hooks';
+import { AxiosInterceptor } from './shared/api/config/axios.config';
 
 export const GlobalContext = createContext<any>(null);
 function App() {
@@ -13,7 +14,9 @@ function App() {
 
   return (
     <GlobalContext.Provider value={globalState}>
-      <BrowserRouter />
+      <AxiosInterceptor>
+        <BrowserRouter />
+      </AxiosInterceptor>
     </GlobalContext.Provider>
   );
 }

@@ -2,7 +2,7 @@ import { Movie } from 'src/shared/models/movie.model';
 import BaseAPI, { HTTPMethod } from '../config/base.api';
 
 class MoviesAPI extends BaseAPI {
-  private url = 'movies';
+  private url = '660/movies';
 
   async getAll() {
     return await this.request(this.url, HTTPMethod.GET);

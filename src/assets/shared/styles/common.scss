@@ -40,10 +40,9 @@
 }
 
 .my-1 {
-  margin-top: .5rem;
-  margin-bottom: .5rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
 }
-
 
 .form-control {
   margin-bottom: 1rem;
@@ -62,5 +61,11 @@
 
   input.error {
     border-color: red;
+  }
+
+  .form-error-msg {
+    font-size: 0.75rem;
+    color: red;
+    margin-left: 1rem;
   }
 }

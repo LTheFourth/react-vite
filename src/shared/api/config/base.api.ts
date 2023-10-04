@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { apiConfig } from './axios.config';
+
+import apiConfig from './axios.config';
 
 export enum HTTPMethod {
   GET = 'GET',

@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { IValidator } from '../interface/Iform';
+import { ERROR_MSG } from '../const/error-msg';
 
 export function useFormControl(
   initValue: any,
@@ -43,4 +44,15 @@ export function useDebounce(value: string, delay: number = 300) {
 export function useGlobalState<T>(initialValue?: any) {
   const [value, setValue] = useState<T>(initialValue);
   return { value, setValue };
+}
+
+export function useErrorMsg() {
+  const error = (code: string | null) => {
+    if (!code) {
+      return null;
+    }
+
+    return ERROR_MSG[code];
+  };
+  return { error };
 }

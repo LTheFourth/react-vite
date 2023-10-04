@@ -1,0 +1,1 @@
+export {default as ErrorMsg} from './err-msg.tsx'

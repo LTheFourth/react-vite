@@ -3,8 +3,8 @@ import cookieService from 'src/shared/service/cookies.service';
 
 export class AuthSession {
   isLoggedIn: boolean = false;
-  protected token?: string | null;
-  protected userRole?: string | null;
+  token?: string | null;
+  userRole?: string | null;
 
   constructor() {
     this.getSessionToken();
