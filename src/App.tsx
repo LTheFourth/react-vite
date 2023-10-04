@@ -1,22 +1,20 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React from 'react';
-import { RouterProvider } from 'react-router-dom';
+import React, { createContext } from 'react';
 import './App.scss';
-import useRouting from './App.router';
-// import { useGlobalState } from './shared/utils/hooks/hooks';
-// import authSession from './core/auth/auth-session.service';
-// export const GlobalContext = React.createContext<any>(null);
+import authSession from './core/auth/auth-session.service';
+import BrowserRouter from './Browser';
+import { useGlobalState } from './shared/utils/hooks/hooks';
 
+export const GlobalContext = createContext<any>(null);
 function App() {
-  // const globalState = {
-  //   isLoggedIn: useGlobalState<boolean>(authSession.isLoggedIn),
-  // };
-  const routing = useRouting();
+  const globalState = {
+    isAuth: useGlobalState(authSession.isLoggedIn),
+  };
 
   return (
-    <React.StrictMode>
-      <RouterProvider router={routing.router}></RouterProvider>
-    </React.StrictMode>
+    <GlobalContext.Provider value={globalState}>
+      <BrowserRouter />
+    </GlobalContext.Provider>
   );
 }
 

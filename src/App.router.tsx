@@ -4,15 +4,20 @@ import { HomePageComponent } from 'src/pages/Home';
 import { DetailPageComponent } from './pages/Detail';
 import { UserPageComponent } from './pages/User';
 import { LoginPageComponent } from './pages/Auth/Login';
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
+import { GlobalContext } from './App';
 
 export default function useRouting() {
+  const globalState = useContext(GlobalContext);
+  const isAuth = globalState.isAuth
   const router = createBrowserRouter([
     {
       path: '/',
-      element: <Navigate to='/auth' />,
-      // element: <Layout />,
-      // element: false ? <Layout /> : <Navigate to='/auth' />,
+      element: isAuth.value? (
+        <Layout />
+      ) : (
+        <Navigate to='/auth' />
+      ),
       children: [
         {
           index: true,
@@ -39,8 +44,7 @@ export default function useRouting() {
     },
     {
       path: '/auth',
-      element: <Outlet />,
-      // element: isLoggedIn ? <Navigate to='/' /> : <Outlet />,
+      element: isAuth.value? <Navigate to='/' /> : <Outlet />,
       children: [
         {
           index: true,

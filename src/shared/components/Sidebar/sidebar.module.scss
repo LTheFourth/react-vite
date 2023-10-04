@@ -33,7 +33,16 @@
   }
 }
 
-
+.actions {
+  position: absolute;
+  bottom: 1rem;
+  width: 12rem;
+  display: flex;
+  align-items: center;
+  > button {
+    width: 100%;
+  }
+}
 
 .navLinks {
   margin: 1rem 0;

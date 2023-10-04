@@ -1,7 +1,13 @@
+import { useContext } from 'react';
 import style from './sidebar.module.scss';
 import { NavLink } from 'react-router-dom';
+import { GlobalContext } from 'src/App';
+import authSession from 'src/core/auth/auth-session.service';
 
 export default function SidebarComponent() {
+  const globalState = useContext(GlobalContext);
+  const isAuth = globalState.isAuth;
+
   const links: { name: string; path: string }[] = [
     { name: 'Movies', path: 'home' },
     { name: 'Users', path: 'user' },
@@ -21,7 +27,7 @@ export default function SidebarComponent() {
           return (
             <NavLink
               key={index}
-              className={({isActive}) =>
+              className={({ isActive }) =>
                 isActive
                   ? `${style.isActiveLink} ${style.linkItem}`
                   : style.linkItem
@@ -32,6 +38,18 @@ export default function SidebarComponent() {
             </NavLink>
           );
         })}
+      </div>
+
+      <div className={style.actions}>
+        <button
+          className='btn'
+          onClick={() => {
+            authSession.logout();
+            isAuth.setValue(false);
+          }}
+        >
+          Log out
+        </button>
       </div>
     </div>
   );

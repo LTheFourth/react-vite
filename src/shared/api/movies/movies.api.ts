@@ -23,8 +23,6 @@ class MoviesAPI extends BaseAPI {
   async delete(id: string) {
     return await this.request(`${this.url}/${id}`, HTTPMethod.DELETE);
   }
-
-
 }
 
 const movieSerive = new MoviesAPI();
